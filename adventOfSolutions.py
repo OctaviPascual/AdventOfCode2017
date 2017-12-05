@@ -2,6 +2,7 @@ from day1.captcha import Captcha
 from day2.checksum import Checksum
 from day3.memory import Memory
 from day4.passphrase import Passphrase
+from day5.maze import Maze
 
 print('***************')
 print('**** Day 1 ****')
@@ -30,3 +31,10 @@ print('***************')
 memory = Passphrase(open('./day4/input.txt').read())
 print('- Part One: ' + str(memory.solve_part_one()))
 print('- Part Two: ' + str(memory.solve_part_two()))
+
+print('***************')
+print('**** Day 5 ****')
+print('***************')
+maze = Maze(open('./day5/input.txt').read())
+print('- Part One: ' + str(maze.solve_part_one()))
+print('- Part Two: ' + str(maze.solve_part_two()))
