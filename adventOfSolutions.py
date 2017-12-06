@@ -3,6 +3,7 @@ from day2.checksum import Checksum
 from day3.memory import Memory
 from day4.passphrase import Passphrase
 from day5.maze import Maze
+from day6.reallocation import Reallocation
 
 print('***************')
 print('**** Day 1 ****')
@@ -38,3 +39,10 @@ print('***************')
 maze = Maze(open('./day5/input.txt').read())
 print('- Part One: ' + str(maze.solve_part_one()))
 print('- Part Two: ' + str(maze.solve_part_two()))
+
+print('***************')
+print('**** Day 6 ****')
+print('***************')
+reallocation = Reallocation(open('./day6/input.txt').read())
+print('- Part One: ' + str(reallocation.solve_part_one()))
+print('- Part Two: ' + str(reallocation.solve_part_two()))
