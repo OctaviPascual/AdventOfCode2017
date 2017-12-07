@@ -1,6 +1,7 @@
 import unittest
 from reallocation import Reallocation
 
+
 class ReallocationTest(unittest.TestCase):
 
     def setUp(self):
