@@ -3,7 +3,7 @@ import re
 
 class Program:
 
-    REGEX = '(\w+) \((\d+)\)(?: -> (.*))?'
+    REGEX = r'(\w+) \((\d+)\)(?: -> (.*))?'
 
     def __init__(self, row):
         search = re.search(self.REGEX, row)

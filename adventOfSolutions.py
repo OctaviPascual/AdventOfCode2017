@@ -5,6 +5,7 @@ from day4.passphrase import Passphrase
 from day5.maze import Maze
 from day6.reallocation import Reallocation
 from day7.day7 import Day7
+from day8.day8 import Day8
 
 print('***************')
 print('**** Day 1 ****')
@@ -54,3 +55,10 @@ print('***************')
 day7 = Day7(open('./day7/input.txt').read())
 print('- Part One: ' + str(day7.solve_part_one()))
 print('- Part Two: ' + str(day7.solve_part_two()))
+
+print('***************')
+print('**** Day 8 ****')
+print('***************')
+day8 = Day8(open('./day8/input.txt').read())
+print('- Part One: ' + str(day8.solve_part_one()))
+print('- Part Two: ' + str(day8.solve_part_two()))
