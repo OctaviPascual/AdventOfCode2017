@@ -14,10 +14,11 @@ class Day8Test(unittest.TestCase):
         self.day8 = Day8('\n'.join(instructions))
 
     def test_part_one(self):
-        self.assertEqual(self.day8.solve_part_one(), 1)
+        self.assertEqual(1, self.day8.solve_part_one())
 
     def test_part_two(self):
-        self.assertEqual(self.day8.solve_part_two(), 10)
+        self.assertEqual(10, self.day8.solve_part_two())
+
 
 if __name__ == '__main__':
     unittest.main()

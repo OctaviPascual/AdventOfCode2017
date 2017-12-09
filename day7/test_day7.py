@@ -23,10 +23,11 @@ class Day7Test(unittest.TestCase):
         self.day7 = Day7('\n'.join(tower))
 
     def test_part_one(self):
-        self.assertEqual(self.day7.solve_part_one(), 'tknk')
+        self.assertEqual('tknk', self.day7.solve_part_one())
 
     def test_part_two(self):
-        self.assertEqual(self.day7.solve_part_two(), 60)
+        self.assertEqual(60, self.day7.solve_part_two())
+
 
 if __name__ == '__main__':
     unittest.main()
