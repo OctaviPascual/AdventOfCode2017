@@ -7,6 +7,7 @@ from day6.reallocation import Reallocation
 from day7.day7 import Day7
 from day8.day8 import Day8
 from day9.day9 import Day9
+from day10.day10 import Day10
 
 print('***************')
 print('**** Day 1 ****')
@@ -71,3 +72,11 @@ print('***************')
 day9 = Day9(open('./day9/input.txt').read())
 print('- Part One: ' + str(day9.solve_part_one()))
 print('- Part Two: ' + str(day9.solve_part_two()))
+
+
+print('***************')
+print('*** Day 10 ****')
+print('***************')
+day10 = Day10(open('./day10/input.txt').read())
+print('- Part One: ' + str(day10.solve_part_one()))
+print('- Part Two: ' + str(day10.solve_part_two()))
