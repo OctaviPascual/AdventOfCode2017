@@ -1,6 +1,7 @@
 from itertools import cycle
 from collections import defaultdict
 
+
 class Square:
 
     def __init__(self, x, y):
