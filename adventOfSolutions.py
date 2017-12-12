@@ -9,6 +9,7 @@ from day8.day8 import Day8
 from day9.day9 import Day9
 from day10.day10 import Day10
 from day11.day11 import Day11
+from day12.day12 import Day12
 
 print('***************')
 print('**** Day 1 ****')
@@ -86,3 +87,10 @@ print('***************')
 day11 = Day11(open('./day11/input.txt').read())
 print('- Part One: ' + str(day11.solve_part_one()))
 print('- Part Two: ' + str(day11.solve_part_two()))
+
+print('***************')
+print('*** Day 12 ****')
+print('***************')
+day12 = Day12(open('./day12/input.txt').read())
+print('- Part One: ' + str(day12.solve_part_one()))
+print('- Part Two: ' + str(day12.solve_part_two()))
