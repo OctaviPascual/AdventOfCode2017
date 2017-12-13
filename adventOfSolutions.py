@@ -10,6 +10,7 @@ from day9.day9 import Day9
 from day10.day10 import Day10
 from day11.day11 import Day11
 from day12.day12 import Day12
+from day13.day13 import Day13
 
 print('***************')
 print('**** Day 1 ****')
@@ -39,6 +40,7 @@ memory = Passphrase(open('./day4/input.txt').read())
 print('- Part One: ' + str(memory.solve_part_one()))
 print('- Part Two: ' + str(memory.solve_part_two()))
 
+# TODO Optimize part two
 print('***************')
 print('**** Day 5 ****')
 print('***************')
@@ -94,3 +96,11 @@ print('***************')
 day12 = Day12(open('./day12/input.txt').read())
 print('- Part One: ' + str(day12.solve_part_one()))
 print('- Part Two: ' + str(day12.solve_part_two()))
+
+# TODO optimize part 2
+print('***************')
+print('*** Day 13 ****')
+print('***************')
+day13 = Day13(open('./day13/input.txt').read())
+print('- Part One: ' + str(day13.solve_part_one()))
+#print('- Part Two: ' + str(day13.solve_part_two()))
