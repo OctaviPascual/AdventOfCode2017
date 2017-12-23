@@ -13,8 +13,7 @@ class Day15Test(unittest.TestCase):
         cls.day15 = Day15('\n'.join(starts))
 
     def test_part_one(self):
-        pass
-        #self.assertEqual(588, self.day15.solve_part_one())
+        self.assertEqual(588, self.day15.solve_part_one())
 
     def test_part_two(self):
         self.assertEqual(309, self.day15.solve_part_two())
