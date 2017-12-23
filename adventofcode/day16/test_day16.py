@@ -15,5 +15,6 @@ class Day16Test(unittest.TestCase):
     def test_part_two(self):
         self.assertEqual('abcde', self.day16.solve_part_two())
 
+
 if __name__ == '__main__':
     unittest.main()
