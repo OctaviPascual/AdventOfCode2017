@@ -5,9 +5,9 @@ from day import Day
 
 class Programs:
 
-    SPIN_REGEX = r's(\d+)'
-    EXCHANGE_REGEX = r'x(\d+)/(\d+)'
-    PARTNER_REGEX = r'p(\w)/(\w)'
+    SPIN = r's(\d+)'
+    EXCHANGE = r'x(\d+)/(\d+)'
+    PARTNER = r'p(\w)/(\w)'
 
     def __init__(self, size, moves):
         self.size = size
@@ -20,9 +20,9 @@ class Programs:
         # Work with list as str is immutable
         programs = list(programs)
         for move in self.moves:
-            spin = re.match(Programs.SPIN_REGEX, move)
-            exchange = re.match(Programs.EXCHANGE_REGEX, move)
-            partner = re.match(Programs.PARTNER_REGEX, move)
+            spin = re.match(Programs.SPIN, move)
+            exchange = re.match(Programs.EXCHANGE, move)
+            partner = re.match(Programs.PARTNER, move)
             if spin:
                 n = int(spin.group(1))
                 programs = Programs.spin(n, programs)
