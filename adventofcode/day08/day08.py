@@ -55,7 +55,7 @@ class Program:
 class Day08(Day):
 
     def __init__(self, program):
-        instructions = [i for i in program.split('\n')]
+        instructions = [i for i in program.splitlines()]
         self.program = Program([Instruction(i) for i in instructions])
         self.program.execute()
 

@@ -30,7 +30,7 @@ class Passphrase:
 class Day04(Day):
 
     def __init__(self, passphrases):
-        passphrases = [row.split() for row in passphrases.split('\n')]
+        passphrases = [row.split() for row in passphrases.splitlines()]
         self.passphrase = Passphrase(passphrases)
 
     def solve_part_one(self):

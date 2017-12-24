@@ -43,7 +43,7 @@ class Village:
 class Day12(Day):
 
     def __init__(self, programs):
-        programs = [p for p in programs.split('\n')]
+        programs = [p for p in programs.splitlines()]
         self.village = Village(programs)
 
     def solve_part_one(self):

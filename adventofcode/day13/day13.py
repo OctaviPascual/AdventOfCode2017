@@ -60,7 +60,7 @@ class Firewall:
 class Day13(Day):
 
     def __init__(self, layers):
-        layers = [p for p in layers.split('\n')]
+        layers = [p for p in layers.splitlines()]
         self.firewall = Firewall(layers)
 
     def solve_part_one(self):

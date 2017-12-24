@@ -40,7 +40,7 @@ class Maze:
 class Day05(Day):
 
     def __init__(self, instructions):
-        instructions = [int(x) for x in instructions.split('\n')]
+        instructions = [int(x) for x in instructions.splitlines()]
         self.maze = Maze(instructions)
 
     def solve_part_one(self):

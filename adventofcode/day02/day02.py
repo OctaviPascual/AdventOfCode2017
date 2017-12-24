@@ -29,7 +29,7 @@ class Checksum:
 class Day02(Day):
 
     def __init__(self, spreadsheet):
-        spreadsheet = [row.split('\t') for row in spreadsheet.split('\n')]
+        spreadsheet = [row.split('\t') for row in spreadsheet.splitlines()]
         spreadsheet = [list(map(int, row)) for row in spreadsheet]
         self.checksum = Checksum(spreadsheet)
 

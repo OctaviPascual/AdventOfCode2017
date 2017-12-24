@@ -58,8 +58,8 @@ class Judge:
 class Day15(Day):
 
     def __init__(self, starts):
-        self.start_a = int(starts.split('\n')[0].split()[-1])
-        self.start_b = int(starts.split('\n')[1].split()[-1])
+        self.start_a = int(starts.splitlines()[0].split()[-1])
+        self.start_b = int(starts.splitlines()[1].split()[-1])
 
     def solve_part_one(self):
         return Judge(self.start_a, self.start_b, 40 * 10**6).execute()

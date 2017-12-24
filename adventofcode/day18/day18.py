@@ -28,30 +28,30 @@ class Instruction:
 
         if snd:
             x = snd.group(1)
-            Instruction.snd(x, memory)
+            self.snd(x, memory)
         elif set:
             x = set.group(1)
             y = set.group(2)
-            Instruction.set(x, y, memory)
+            self.set(x, y, memory)
         elif add:
             x = add.group(1)
             y = add.group(2)
-            Instruction.operate(x, y, memory, operator.add)
+            self.operate(x, y, memory, operator.add)
         elif mul:
             x = mul.group(1)
             y = mul.group(2)
-            Instruction.operate(x, y, memory, operator.mul)
+            self.operate(x, y, memory, operator.mul)
         elif mod:
             x = mod.group(1)
             y = mod.group(2)
-            Instruction.operate(x, y, memory, operator.mod)
+            self.operate(x, y, memory, operator.mod)
         elif rcv:
             x = rcv.group(1)
-            Instruction.rcv(x, memory)
+            self.rcv(x, memory)
         elif jgz:
             x = jgz.group(1)
             y = jgz.group(2)
-            Instruction.jgz(x, y, memory)
+            self.jgz(x, y, memory)
         else:
             i = '"' + self.instruction + '"'
             raise SyntaxError('The following instruction is invalid: ' + i)
@@ -59,38 +59,37 @@ class Instruction:
         memory['program_counter'] += 1
 
     @staticmethod
-    def get_argument(x, memory):
-        # isdigit does not match negative numbers, so we remove the minus sign
-        return int(x) if x.lstrip('-').isdigit() else memory['registers'][x]
+    def get_value(arg, memory):
+        return memory['registers'][arg] if arg.isalpha() else int(arg)
 
     @staticmethod
     def snd(x, memory):
-        x = Instruction.get_argument(x, memory)
-        memory['sounds'].append(x)
+        x = Instruction.get_value(x, memory)
+        memory['sound'] = x
 
     @staticmethod
     def set(x, y, memory):
-        y = Instruction.get_argument(y, memory)
+        y = Instruction.get_value(y, memory)
         memory['registers'][x] = y
 
     @staticmethod
     def operate(x, y, memory, op):
-        y = Instruction.get_argument(y, memory)
+        y = Instruction.get_value(y, memory)
         registers = memory['registers']
         registers[x] = op(registers[x], y)
 
     @staticmethod
     def rcv(x, memory):
-        x = Instruction.get_argument(x, memory)
+        x = Instruction.get_value(x, memory)
         if x != 0:
-            memory['recover'] = memory['sounds'][-1]
+            memory['recover'] = memory['sound']
             # Ensure program will end right after this instruction
             memory['program_counter'] = -2
 
     @staticmethod
     def jgz(x, y, memory):
-        x = Instruction.get_argument(x, memory)
-        y = Instruction.get_argument(y, memory)
+        x = Instruction.get_value(x, memory)
+        y = Instruction.get_value(y, memory)
         if x > 0:
             # Since program_counter is always incremented by one
             # we need to take one from the offset y
@@ -104,7 +103,7 @@ class Solo:
         self.memory = {
             'program_counter': 0,
             'registers': defaultdict(int),
-            'sounds': [],
+            'sound': None,
             'recover': None
         }
 
@@ -118,15 +117,87 @@ class Solo:
         return self.memory
 
 
+# We need to override two instructions for part 2
+class InstructionDuet(Instruction):
+
+    @staticmethod
+    def snd(x, memory):
+        x = Instruction.get_value(x, memory)
+        assert memory['send'] is None
+        memory['send'] = x
+
+    @staticmethod
+    def rcv(x, memory):
+        if not memory['receive']:
+            # We must wait so we execute the same instruction again
+            memory['program_counter'] -= 1
+        else:
+            memory['registers'][x] = memory['receive'].pop(0)
+
+
+class Duet:
+
+    def __init__(self, instructions):
+        self.instructions = instructions
+        self.memory_0 = {
+            'program_counter': 0,
+            'registers': defaultdict(int),
+            'send': None,
+            'receive': [],
+            'count': 0
+        }
+        self.memory_1 = {
+            'program_counter': 0,
+            'registers': defaultdict(int),
+            'send': None,
+            'receive': [],
+            'count': 0
+        }
+        self.memory_0['registers']['p'] = 0
+        self.memory_1['registers']['p'] = 1
+
+    def execute(self):
+
+        while True:
+            pc_0 = self.memory_0['program_counter']
+            pc_1 = self.memory_1['program_counter']
+
+            if 0 <= pc_0 < len(self.instructions):
+                self.instructions[pc_0].execute(self.memory_0)
+
+            if 0 <= pc_1 < len(self.instructions):
+                self.instructions[pc_1].execute(self.memory_1)
+
+            send_0 = self.memory_0['send']
+            if send_0 is not None:
+                self.memory_1['receive'].append(send_0)
+                self.memory_0['count'] += 1
+                self.memory_0['send'] = None
+
+            send_1 = self.memory_1['send']
+            if send_1 is not None:
+                self.memory_0['receive'].append(send_1)
+                self.memory_1['count'] += 1
+                self.memory_1['send'] = None
+
+            # Detect if we have reached a deadlock
+            wait_0 = pc_0 == self.memory_0['program_counter']
+            wait_1 = pc_1 == self.memory_1['program_counter']
+            if wait_0 and wait_1:
+                break
+
+
 class Day18(Day):
 
     def __init__(self, program):
-        program = [Instruction(i) for i in program.split('\n')]
-        self.solo = Solo(program)
+        self.program = program.splitlines()
 
     def solve_part_one(self):
-        self.solo.execute()
-        return self.solo.memory['recover']
+        solo = Solo([Instruction(i) for i in self.program])
+        solo.execute()
+        return solo.memory['recover']
 
     def solve_part_two(self):
-        pass
+        duet = Duet([InstructionDuet(i) for i in self.program])
+        duet.execute()
+        return duet.memory_1['count']

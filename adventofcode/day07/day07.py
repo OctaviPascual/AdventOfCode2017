@@ -69,7 +69,7 @@ class Programs:
 class Day07(Day):
 
     def __init__(self, tower):
-        tower = [t for t in tower.split('\n')]
+        tower = [t for t in tower.splitlines()]
         self.programs = Programs([Program(row) for row in tower])
 
     def solve_part_one(self):
