@@ -21,6 +21,7 @@ from day18.day18 import Day18
 from day19.day19 import Day19
 from day20.day20 import Day20
 from day21.day21 import Day21
+from day22.day22 import Day22
 
 CALENDAR = {
     1:  {'class': Day01, 'path': './day01'},
@@ -43,7 +44,8 @@ CALENDAR = {
     18: {'class': Day18, 'path': './day18'},
     19: {'class': Day19, 'path': './day19'},
     20: {'class': Day20, 'path': './day20'},
-    21: {'class': Day21, 'path': './day21'}
+    21: {'class': Day21, 'path': './day21'},
+    22: {'class': Day22, 'path': './day22'}
 }
 
 
