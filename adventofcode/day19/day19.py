@@ -50,6 +50,12 @@ class Diagram:
         self.steps += 1
 
         if self.diagram[cell].isalpha():
+            # Note that for long strings (which are immutable in Python)
+            # it is much more efficient to use a list and perform
+            # a ''.join(string) operation at the end, but in this case
+            # since there are only 26 [A-Z] possible letters,
+            # it is more convenient and readable to use += operation
+            # http://blog.mclemon.io/python-efficient-string-concatenation-in-python-2016-edition
             self.letters += self.diagram[cell]
 
         # First we try to advance in the same direction

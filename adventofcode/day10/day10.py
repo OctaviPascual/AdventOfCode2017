@@ -56,6 +56,7 @@ class KnotHash(KnotHashBase):
         self.hash = ''.join(list(map(lambda x: '{:02x}'.format(x), self.dense_hash)))
 
     def compute_dense_hash(self, l, n):
+        # Stolen from https://stackoverflow.com/a/312464
         chunks = [l[i:i + n] for i in range(0, len(l), n)]
         self.dense_hash = [reduce(lambda x, y: x ^ y, c) for c in chunks]
 
