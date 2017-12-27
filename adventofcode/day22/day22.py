@@ -191,18 +191,16 @@ class Day22(Day):
         self.bursts = bursts
 
     def solve_part_one(self):
-        bursts = 10000 if self.bursts is None else self.bursts
+        bursts = 10 * 10**3 if self.bursts is None else self.bursts
         cluster = Cluster(self.grid, bursts)
-        virus = Virus(cluster)
-        cluster.add_virus(virus)
+        cluster.add_virus(Virus(cluster))
         cluster.start_infection()
         return cluster.infections
 
     def solve_part_two(self):
-        bursts = 10000000 if self.bursts is None else self.bursts
+        bursts = 10 * 10**6 if self.bursts is None else self.bursts
         cluster = Cluster(self.grid, bursts)
         # Instead of a virus, create an EvolvedVirus, as easy as that
-        virus = EvolvedVirus(cluster)
-        cluster.add_virus(virus)
+        cluster.add_virus(EvolvedVirus(cluster))
         cluster.start_infection()
         return cluster.infections

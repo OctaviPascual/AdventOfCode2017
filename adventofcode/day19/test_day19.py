@@ -2,7 +2,7 @@ import unittest
 from day19.day19 import Day19
 
 
-class Day20Test(unittest.TestCase):
+class Day19Test(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
