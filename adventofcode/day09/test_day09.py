@@ -2,7 +2,7 @@ import unittest
 from day09.day09 import Day09
 
 
-class Day9Test(unittest.TestCase):
+class Day09Test(unittest.TestCase):
 
     def test_part_one(self):
         streams = {
