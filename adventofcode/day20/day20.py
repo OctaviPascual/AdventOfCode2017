@@ -6,17 +6,18 @@ from day import Day
 
 class Particle:
 
-    position = r'p=<(\-?\d+),(\-?\d+),(\-?\d+)>, '
-    velocity = r'v=<(\-?\d+),(\-?\d+),(\-?\d+)>, '
-    acceleration = 'a=<(\-?\d+),(\-?\d+),(\-?\d+)>'
-    REGEX = position + velocity + acceleration
+    REGEX = re.compile(
+        r'p=<(-?\d+),(-?\d+),(-?\d+)>, '
+        r'v=<(-?\d+),(-?\d+),(-?\d+)>, '
+        r'a=<(-?\d+),(-?\d+),(-?\d+)>'
+    )
 
     Position = namedtuple('Position', ['x', 'y', 'z'])
     Velocity = namedtuple('Velocity', ['x', 'y', 'z'])
     Acceleration = namedtuple('Acceleration', ['x', 'y', 'z'])
 
     def __init__(self, particle):
-        m = re.match(Particle.REGEX, particle)
+        m = Particle.REGEX.match(particle)
         l = list(map(int, list(m.groups())))
         self.position = Particle.Position(l[0], l[1], l[2])
         self.velocity = Particle.Velocity(l[3], l[4], l[5])

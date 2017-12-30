@@ -4,7 +4,7 @@ from day import Day
 
 class Village:
 
-    REGEX = r'(\d+) <-> (.*)'
+    REGEX = re.compile(r'(\d+) <-> (.*)')
 
     def __init__(self, programs):
         self.village = self.build_graph(programs)
@@ -12,9 +12,9 @@ class Village:
     def build_graph(self, programs):
         village = {}
         for program in programs:
-            search = re.search(Village.REGEX, program)
-            id = int(search.group(1))
-            neighbors = [int(x.strip()) for x in search.group(2).split(',')]
+            match = Village.REGEX.match(program)
+            id = int(match.group(1))
+            neighbors = [int(x.strip()) for x in match.group(2).split(',')]
             village[id] = neighbors
         return village
 

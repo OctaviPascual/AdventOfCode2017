@@ -32,18 +32,18 @@ class State:
     )
 
     def __init__(self, blueprint):
-        search = State.REGEX.search(blueprint)
+        match = State.REGEX.match(blueprint)
 
-        self.label = search.group(1)
+        self.label = match.group(1)
 
-        write = int(search.group(2))
-        move = search.group(3)
-        next_state = search.group(4)
+        write = int(match.group(2))
+        move = match.group(3)
+        next_state = match.group(4)
         rule_0 = Rule(write, move, next_state)
 
-        write = int(search.group(5))
-        move = search.group(6)
-        next_state = search.group(7)
+        write = int(match.group(5))
+        move = match.group(6)
+        next_state = match.group(7)
         rule_1 = Rule(write, move, next_state)
 
         self.rules = {
@@ -73,9 +73,9 @@ class TuringMachine:
         self.execute()
 
     def build(self, blueprint):
-        search = TuringMachine.REGEX.search(''.join(blueprint[:2]))
-        self.state = search.group(1)
-        self.steps = int(search.group(2))
+        match = TuringMachine.REGEX.match(''.join(blueprint[:2]))
+        self.state = match.group(1)
+        self.steps = int(match.group(2))
 
         for i in range(2, len(blueprint), 10):
             state = State(''.join(blueprint[i:i+10]))

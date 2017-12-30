@@ -1,4 +1,4 @@
-from copy import deepcopy, copy
+from copy import deepcopy
 from day import Day
 
 

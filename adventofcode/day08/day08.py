@@ -6,7 +6,10 @@ from day import Day
 
 class Instruction:
 
-    REGEX = r'(\w+) (\binc\b|\bdec\b) (\-?\d+) \bif\b (\w+) ([<>=!]{1,2}) (\-?\d+)'
+    REGEX = re.compile(
+        r'(\w+) (\binc\b|\bdec\b) (-?\d+) \bif\b (\w+) ([<>=!]{1,2}) (-?\d+)'
+    )
+
     COMPARATORS = {
         '<': operator.lt,
         '>': operator.gt,
@@ -17,13 +20,13 @@ class Instruction:
     }
 
     def __init__(self, instruction):
-        search = re.search(self.REGEX, instruction)
-        self.register = search.group(1)
-        self.increase = search.group(2) == 'inc'
-        self.amount = int(search.group(3))
-        self.condition_register = search.group(4)
-        comparator = search.group(5)
-        value = int(search.group(6))
+        match = self.REGEX.match(instruction)
+        self.register = match.group(1)
+        self.increase = match.group(2) == 'inc'
+        self.amount = int(match.group(3))
+        self.condition_register = match.group(4)
+        comparator = match.group(5)
+        value = int(match.group(6))
         self.condition = lambda x: self.COMPARATORS[comparator](x, value)
 
     def execute(self, memory):

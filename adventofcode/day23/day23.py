@@ -6,19 +6,19 @@ from day import Day
 
 class Instruction:
 
-    SET = r'set ([a-z]) ([a-z]|\-?\d+)'
-    SUB = r'sub ([a-z]) ([a-z]|\-?\d+)'
-    MUL = r'mul ([a-z]) ([a-z]|\-?\d+)'
-    JNZ = r'jnz ([a-z]|\-?\d+) ([a-z]|\-?\d+)'
+    SET = re.compile(r'set ([a-z]) ([a-z]|-?\d+)')
+    SUB = re.compile(r'sub ([a-z]) ([a-z]|-?\d+)')
+    MUL = re.compile(r'mul ([a-z]) ([a-z]|-?\d+)')
+    JNZ = re.compile(r'jnz ([a-z]|-?\d+) ([a-z]|-?\d+)')
 
     def __init__(self, instruction):
         self.instruction = instruction
 
     def execute(self, memory):
-        set = re.match(Instruction.SET, self.instruction)
-        sub = re.match(Instruction.SUB, self.instruction)
-        mul = re.match(Instruction.MUL, self.instruction)
-        jnz = re.match(Instruction.JNZ, self.instruction)
+        set = Instruction.SET.match(self.instruction)
+        sub = Instruction.SUB.match(self.instruction)
+        mul = Instruction.MUL.match(self.instruction)
+        jnz = Instruction.JNZ.match(self.instruction)
 
         # Even if it incrementing the program counter before executing
         # the instruction is bizarre, it is harmless and we can

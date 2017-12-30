@@ -4,15 +4,15 @@ from day import Day
 
 class Program:
 
-    REGEX = r'(\w+) \((\d+)\)(?: -> (.*))?'
+    REGEX = re.compile(r'(\w+) \((\d+)\)(?: -> (.*))?')
 
     def __init__(self, row):
-        search = re.search(self.REGEX, row)
-        self.name = search.group(1)
-        self.weight = int(search.group(2))
+        match = self.REGEX.match(row)
+        self.name = match.group(1)
+        self.weight = int(match.group(2))
         self.children = []
-        if search.group(3):
-            self.children.extend([c.strip() for c in search.group(3).split(',')])
+        if match.group(3):
+            self.children.extend([c.strip() for c in match.group(3).split(',')])
 
 
 class Programs:

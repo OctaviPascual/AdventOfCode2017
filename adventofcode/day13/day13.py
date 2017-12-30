@@ -5,7 +5,7 @@ from day import Day
 
 class Firewall:
 
-    REGEX = r'(\d+): (\d+)'
+    REGEX = re.compile(r'(\d+): (\d+)')
 
     def __init__(self, layers):
         self.firewall = self.build_firewall(layers)
@@ -13,9 +13,9 @@ class Firewall:
     def build_firewall(self, layers):
         firewall = defaultdict(int)
         for layer in layers:
-            search = re.search(Firewall.REGEX, layer)
-            depth = int(search.group(1))
-            scope = int(search.group(2))
+            match = Firewall.REGEX.match(layer)
+            depth = int(match.group(1))
+            scope = int(match.group(2))
             firewall[depth] = scope
         return firewall
 
