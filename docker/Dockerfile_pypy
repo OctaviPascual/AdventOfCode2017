@@ -1,0 +1,10 @@
+FROM pypy:3-5-slim
+
+ENV PYTHONUNBUFFERED=1
+
+RUN mkdir -p /opt/adventOfCode
+WORKDIR /opt/adventOfCode
+
+ADD adventofcode .
+
+ENTRYPOINT [ "pypy3", "adventofcode.py" ]

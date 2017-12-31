@@ -1,6 +1,6 @@
 # Advent of Code 2017
 
-My solutions for [Advent of Code 2017](https://adventofcode.com/2017) in Python.
+My solutions for [Advent of Code 2017](https://adventofcode.com/2017) in [Python](https://www.python.org/).
 
 Special thanks to [Erisc Wastl](http://was.tl) and the rest of the [AoC team](https://adventofcode.com/2017/about) for such an awesome set of challenges! :bowtie:
 
@@ -26,7 +26,7 @@ Special thanks to [Erisc Wastl](http://was.tl) and the rest of the [AoC team](ht
 * **[Day 20: Particle Swarm][day20]** *([code][code20])*
 * **[Day 21: Fractal Art][day21]** *([code][code21])*
 * **[Day 22: Sporifica Virus][day22]** *([code][code22])*
-* **[Day 23: Coprocessor Conflagration][day23]** *([code][code23])* *([image](img/day23/pseudocode.jpeg))*
+* **[Day 23: Coprocessor Conflagration][day23]** *([code][code23])* *([image](docs/pseudocode.jpeg))*
 * **[Day 24: Electromagnetic Moat][day24]** *([code][code24])*
 * **[Day 25: The Halting Problem][day25]** *([code][code25])*
 
@@ -81,3 +81,81 @@ Special thanks to [Erisc Wastl](http://was.tl) and the rest of the [AoC team](ht
 [code23]: adventofcode/day23/day23.py
 [code24]: adventofcode/day24/day24.py
 [code25]: adventofcode/day25/day25.py
+
+## Usage
+
+The main program of this project is [adventofcode.py](adventofcode/adventofcode.py). You must use this program to run any day puzzle. Usage is pretty straightforward. Note that DAY can be any number from 1 to 25. You can find a sample of the ouput in [output.txt](docs/output.txt).
+
+```text
+usage: adventofcode.py [-h] [-d DAY]
+
+Run Advent of Code 2017
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -d DAY, --day DAY  day to run (all by default)
+```
+
+I only used built-in modules, so it should be easy to run the program in your local machine. Just note that [Python3](https://www.python.org/downloads/) is required. However, to ensure that indeed the program works, I have [dockerized](#docker) the program.
+
+#### Run all days
+
+```bash
+git clone https://github.com/EikaNN/AdventOfCode2017.git
+cd AdventOfCode2017/adventofcode
+python adventofcode.py
+```
+
+#### Run a specific day
+
+```bash
+git clone https://github.com/EikaNN/AdventOfCode2017.git
+cd AdventOfCode2017/adventofcode
+python adventofcode.py -d DAY
+```
+
+## Docker
+
+If you want to use [Docker](https://www.docker.com/get-docker), there are two docker images available. The first one uses [Python](https://www.python.org/) while the second one uses [PyPy](https://pypy.org/), which speeds up considerably the execution.
+
+The following table shows how much it takes to run all days in both Python and Pypy, and the performance gain is substantial, especially considering that no source code modifications were needed!
+
+| Python  | PyPy    |
+|---------|---------|
+| 9min44s | 1min20s |
+
+### Python
+
+#### Run a specific day
+
+```bash
+git clone https://github.com/EikaNN/AdventOfCode2017.git
+cd AdventOfCode2017/docker
+./docker_python.sh -d DAY
+```
+
+#### Run all days
+
+```bash
+git clone https://github.com/EikaNN/AdventOfCode2017.git
+cd AdventOfCode2017/docker
+./docker_python.sh
+```
+
+### PyPy
+
+#### Run a specific day
+
+```bash
+git clone https://github.com/EikaNN/AdventOfCode2017.git
+cd AdventOfCode2017/docker
+./docker_pypy.sh -d DAY
+```
+
+#### Run all days
+
+```bash
+git clone https://github.com/EikaNN/AdventOfCode2017.git
+cd AdventOfCode2017/docker
+./docker_pypy.sh
+```
