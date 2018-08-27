@@ -95,10 +95,10 @@ class Program:
                 break
         return self.memory
 
-    # More efficient ways to check if a number is prime exist,
+    # There exist more efficient ways to check if a number is prime,
     # but for this problem this was more than enough
     def is_prime(self, n):
-        for i in range(2, int(n**0.5)):
+        for i in range(2, int(n**0.5) + 1):
             if n%i == 0:
                 return False
         return True
